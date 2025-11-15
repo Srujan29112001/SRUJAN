@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Srujan's Portfolio - AI Engineer, Robotics Specialist, and Space & Biotech Researcher. Transforming Ideas into Impact Across Disciplines.">
+    <meta name="keywords" content="AI, Machine Learning, Robotics, Space Research, Biotech, Deep Learning, Computer Vision, DRDO, Portfolio">
+    <meta name="author" content="K Srujan">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Srujan's Tech Portfolio Hub">
+    <meta property="og:description" content="Explore my work in AI, Robotics, and Space & Biotech Research">
+    <meta property="og:image" content="Images/My Portfolio-modified (1).png">
+    <meta property="og:url" content="https://srujan29112001.github.io/PortfolioHub/">
+    <meta property="og:type" content="profile">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Srujan's Portfolio">
+    <meta name="twitter:description" content="AI Engineer | Robotics Specialist | Researcher">
+    <meta name="twitter:image" content="Images/My Portfolio-modified (1).png">
+    
+    <title>Srujan | AI Engineer & Robotics Specialist</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Josefin+Sans:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "K Srujan",
+        "alternateName": "Srujan",
+        "jobTitle": "AI Engineer & Robotics Specialist",
+        "description": "From DRDO defence labs to spiritual retreats - merging technical excellence with philosophical depth",
+        "url": "https://srujan29112001.github.io/PortfolioHub/",
+        "sameAs": [
+            "https://github.com/srujan29112001",
+            "https://linkedin.com/in/srujan",
+            "https://huggingface.co/srujan",
+            "https://instagram.com/srujan"
+        ],
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Thapar Institute of Engineering and Technology"
+        },
+        "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Robotics", "Computer Vision", "Deep Learning", "Space Research", "Biotechnology"]
+    }
+    </script>
+</head>
+<body>
+    <!-- Fixed 3D Particle Background for entire website -->
+    <canvas id="particle-canvas" class="particle-canvas-fixed"></canvas>
+    
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-cube">
+                <div class="face"></div>
+                <div class="face"></div>
+                <div class="face"></div>
+                <div class="face"></div>
+                <div class="face"></div>
+                <div class="face"></div>
+            </div>
+            <p class="loader-text">Initializing Portfolio Systems...</p>
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Cursor Trail (Desktop Only) -->
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <img src="Images/My Portfolio-modified (1).png" alt="Srujan Logo" class="logo">
+                
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active" data-nav="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-nav="about">About</a></li>
+                <li><a href="#specializations" class="nav-link" data-nav="specializations">Specializations</a></li>
+                <li><a href="#experience" class="nav-link" data-nav="experience">Experience</a></li>
+                <li><a href="#projects" class="nav-link" data-nav="projects">Projects</a></li>
+                <li><a href="#blog" class="nav-link" data-nav="blog">Blog</a></li>
+                <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-extras">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="motion-toggle" id="motion-toggle" aria-label="Toggle animations">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hello World, I'm</p>
+                    <h1 class="hero-name">
+                        <span class="gradient-text glitch" data-text="Srujan">Srujan</span>
+                    </h1>
+                    <div class="hero-subtitle">
+                        <span id="typing-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-tagline">~Transforming Ideas into Impact Across Disciplines~</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="stat-value" data-target="6">0</div>
+                    <div class="stat-label">Months at DRDO</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🧘</div>
+                    <div class="stat-value" data-target="12">0</div>
+                    <div class="stat-label">Months Spiritual Retreat</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="stat-value" data-target="15" data-suffix="+">0</div>
+                    <div class="stat-label">Major Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-award"></i></div>
+                    <div class="stat-value" data-target="8" data-suffix="+">0</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                About <span class="gradient-text">Me</span>
+            </h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="Images/photo passport.png" alt="Srujan Profile" class="profile-img" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="about-excerpt">
+                        <p class="bio-text">
+                            Hi! I'm <span class="gradient-text">K Srujan</span>, an AI Engineer and Robotics Specialist with a passion for pushing the boundaries of technology and consciousness. Currently pursuing my Master's at Thapar Institute, I blend cutting-edge technical skills with philosophical depth gained from my unique spiritual journey.
+                        </p>
+                    </div>
+                    
+                    <button class="btn-read-more" id="read-more-btn">
+                        <span>Read More</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="about-full" id="about-full">
+                        <p>My technical journey began with a transformative 6-month internship at DRDO-DRDL, where I worked on indigenous defense projects implementing YOLOv7 on NVIDIA Jetson platforms for real-time aerial object detection. This experience, under Dr. Akula Naresh's mentorship, taught me the importance of precision and innovation in critical applications.</p>
+                        
+                        <p>Following DRDO, I embarked on a 12-month spiritual and philosophical sabbatical that profoundly shaped my approach to problem-solving. This retreat wasn't an escape but an intense period of consciousness exploration, studying ancient wisdom alongside modern philosophy, developing adaptive decision-making frameworks that now enhance my technical work.</p>
+                        
+                        <p>This unique combination of technical excellence and philosophical depth allows me to approach AI and robotics not just as technical challenges, but as opportunities to create meaningful impact. Whether developing computer vision systems, building robotic solutions, or exploring space and biotech applications, I bring a holistic perspective that considers both technological advancement and human consciousness.</p>
+                        
+                        <p>My work spans three primary domains: Artificial Intelligence (with focus on deep learning and computer vision), Robotics (emphasizing control systems and real-world applications), and Space & Biotech Research (exploring the intersection of technology with life sciences). Each project reflects my commitment to innovation that serves humanity's broader evolution.</p>
+                    </div>
+                    
+                    <div class="tabs-wrapper">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="experience">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Experience</span>
+                            </button>
+                            <button class="tab-btn" data-tab="education">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Education</span>
+                            </button>
+                            <button class="tab-btn" data-tab="hobbies">
+                                <i class="fas fa-heart"></i>
+                                <span>Hobbies</span>
+                            </button>
+                        </div>
+                        <div class="tab-contents">
+                            <div class="tab-pane active" id="experience">
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div class="timeline-content">
+                                            <h3>DRDO-DRDL (Defence Research and Development Laboratory)</h3>
+                                            <span class="timeline-date">January 2023 - June 2023</span>
+                                            <h4>Deep Learning Project Intern</h4>
+                                            <ul>
+                                                <li>6-month stint on Indigenous Defence Projects</li>
+                                                <li>Focused on the AI Band Vision Project led by Dr. Akula Naresh (Scientist-F)</li>
+                                                <li>Implemented YOLOv7 on NVIDIA Jetson AGX XAVIER</li>
+                                                <li>Real-time aerial view object detection with custom dataset</li>
+                                                <li>Deployed on aerial vehicle (Tunga) with Jetson Nano and Pixhawk</li>
+                                                <li>Added specialized parameters for specific defence applications</li>
+                                                <li>Collaborated with cross-functional teams for integration</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div class="timeline-content">
+                                            <h3>Spiritual & Philosophical Sabbatical</h3>
+                                            <span class="timeline-date">July 2023 - June 2024</span>
+                                            <h4>Deep Study & Personal Development</h4>
+                                            <ul>
+                                                <li>12-month intensive retreat for consciousness exploration</li>
+                                                <li>Studied ancient wisdom and modern philosophy</li>
+                                                <li>Developed adaptive decision-making frameworks</li>
+                                                <li>Enhanced emotional intelligence and strategic insight</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="education">
+                                <div class="education-grid">
+                                    <div class="education-card">
+                                        <div class="edu-icon"><i class="fas fa-university"></i></div>
+                                        <h3>Thapar Institute of Engineering and Technology</h3>
+                                        <span class="edu-date">2019 - 2023</span>
+                                        <p>Bachelor of Engineering in Electronics and Communication Engineering</p>
+                                    </div>
+                                    <div class="education-card">
+                                        <div class="edu-icon"><i class="fas fa-school"></i></div>
+                                        <h3>Krishna Murty IIT Academy (Shivam Junior College)</h3>
+                                        <span class="edu-date">2017 - 2019</span>
+                                        <p>11th & 12th Standard (Intermediate)</p>
+                                    </div>
+                                    <div class="education-card">
+                                        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                                        <h3>All Saints High School</h3>
+                                        <span class="edu-date">2017</span>
+                                        <p>10th Standard (SSC)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="hobbies">
+                                <div class="hobbies-grid">
+                                    <div class="hobby-card">
+                                        <div class="hobby-icon">🎸</div>
+                                        <h4>Guitar Performance</h4>
+                                        <p>Crafting spontaneous melodies that blend emotion with technique</p>
+                                    </div>
+                                    <div class="hobby-card">
+                                        <div class="hobby-icon">⚽</div>
+                                        <h4>Freestyle Football</h4>
+                                        <p>Mastering ball control with creativity, precision, and flair</p>
+                                    </div>
+                                    <div class="hobby-card">
+                                        <div class="hobby-icon">🛹</div>
+                                        <h4>Advanced Skateboarding</h4>
+                                        <p>Pushing balance and style through complex street and park tricks</p>
+                                    </div>
+                                    <div class="hobby-card">
+                                        <div class="hobby-icon">🥊</div>
+                                        <h4>Competitive Boxing</h4>
+                                        <p>Honing discipline, agility, and strategic thinking in the ring</p>
+                                    </div>
+                                    <div class="hobby-card">
+                                        <div class="hobby-icon">🚁</div>
+                                        <h4>FPV Drone Racing</h4>
+                                        <p>Navigating virtual airspace with split-second reflexes and control</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations Section -->
+    <section id="specializations" class="specializations">
+        <div class="container">
+            <h2 class="section-title">
+                My <span class="gradient-text">Specializations</span>
+            </h2>
+            <div class="specialization-grid">
+                <div class="specialty-card">
+                    <div class="card-glow ai-glow"></div>
+                    <div class="specialty-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Artificial Intelligence</h3>
+                    <p class="specialty-tagline">Pioneering AI for Earth's Next Chapter</p>
+                    <div class="specialty-stats">
+                        <div class="stat">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Frameworks</span>
+                        </div>
+                    </div>
+                    <ul class="specialty-skills">
+                        <li>Deep Learning & Neural Networks</li>
+                        <li>Computer Vision (YOLOv7/v8)</li>
+                        <li>Natural Language Processing</li>
+                        <li>Reinforcement Learning</li>
+                        <li>Generative AI Models</li>
+                    </ul>
+                    <a href="https://srujan29112001.github.io/AIPortfolio/" target="_blank" class="specialty-link">
+                        <span>View AI Portfolio</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="specialty-card">
+                    <div class="card-glow robotics-glow"></div>
+                    <div class="specialty-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Robotics & Control Systems</h3>
+                    <p class="specialty-tagline">Engineering Autonomous Intelligence</p>
+                    <div class="specialty-stats">
+                        <div class="stat">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Systems Built</span>
+                        </div>
+                    </div>
+                    <ul class="specialty-skills">
+                        <li>Autonomous Systems</li>
+                        <li>Control Theory</li>
+                        <li>ROS/ROS2</li>
+                        <li>Embedded Systems</li>
+                        <li>Sensor Fusion</li>
+                    </ul>
+                    <a href="https://srujan29112001.github.io/RoboticsPortfolio/" target="_blank" class="specialty-link">
+                        <span>View Robotics Portfolio</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="specialty-card">
+                    <div class="card-glow research-glow"></div>
+                    <div class="specialty-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Space & Biotech Research</h3>
+                    <p class="specialty-tagline">Exploring Frontiers of Science</p>
+                    <div class="specialty-stats">
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Research Papers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Patents Filed</span>
+                        </div>
+                    </div>
+                    <ul class="specialty-skills">
+                        <li>Space Technology</li>
+                        <li>Biotechnology</li>
+                        <li>Data Analysis</li>
+                        <li>Scientific Computing</li>
+                        <li>Research Methodology</li>
+                    </ul>
+                    <a href="https://srujan29112001.github.io/SpaceBioTechPortfolio/" target="_blank" class="specialty-link">
+                        <span>View Research Portfolio</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">
+                Featured <span class="gradient-text">Projects</span>
+            </h2>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">
+                Latest <span class="gradient-text">Blog Posts</span>
+            </h2>
+            <div class="blog-grid" id="blog-grid">
+                <!-- Blog posts will be dynamically loaded here -->
+            </div>
+            <div class="blog-cta">
+                <button class="btn btn-primary" id="load-more-btn">
+                    <span>Load More Posts</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <button class="btn btn-secondary" id="scroll-back-btn" style="display: none; margin-left: 1rem;">
+                    <span>Back to Top</span>
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Records Section -->
+    <section id="records" class="records">
+        <div class="container">
+            <h2 class="section-title">
+                Career <span class="gradient-text">Records</span>
+            </h2>
+            <div class="records-grid">
+                <div class="record-card">
+                    <img src="Images/DRDO-logo.png" alt="DRDO Logo" class="record-logo">
+                    <h3>DRDO-DRDL</h3>
+                    <p>Internship Completion Certificate</p>
+                    <span class="record-detail">AI-Band Vision Project</span>
+                    <a href="#" class="record-link" target="_blank">
+                        <i class="fas fa-certificate"></i>
+                        <span>View Certificate</span>
+                    </a>
+                </div>
+                <div class="record-card">
+                    <img src="Images/thapar.png" alt="Thapar Logo" class="record-logo">
+                    <h3>Thapar University</h3>
+                    <p>B.E. in Electronics & Communication</p>
+                    <span class="record-detail">2019-2023</span>
+                    <a href="#" class="record-link" target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>View Degree</span>
+                    </a>
+                </div>
+                <div class="record-card">
+                    <img src="Images/JEE.jpeg" alt="JEE Logo" class="record-logo">
+                    <h3>JEE Main</h3>
+                    <p>Qualified Entrance Examination</p>
+                    <span class="record-detail">2019</span>
+                    <a href="#" class="record-link" target="_blank">
+                        <i class="fas fa-award"></i>
+                        <span>View Score</span>
+                    </a>
+                </div>
+                <div class="record-card">
+                    <img src="Images/inter-state-board.png" alt="State Board Logo" class="record-logo">
+                    <h3>Inter State Board</h3>
+                    <p>12th Standard Completion</p>
+                    <span class="record-detail">2017-2019</span>
+                    <a href="#" class="record-link" target="_blank">
+                        <i class="fas fa-file-alt"></i>
+                        <span>View Marksheet</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new opportunities, innovative projects, or just having a great conversation about technology and philosophy.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>srujan29112001@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>India</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Open to Remote Work</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/srujan29112001" target="_blank" class="social-link github" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/k-srujan2                    " target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://huggingface.co/Srujan29" target="_blank" class="social-link huggingface" aria-label="HuggingFace">
+                            <span>&#129303;</span>
+                        </a>
+                        <a href="https://www.instagram.com/srujan29_?igshid=YTQwZjQ0NmI0OA==" target="_blank" class="social-link instagram" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/srujan2911" target="_blank" class="social-link x-twitter" aria-label="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="mailto:srujan.hardik@gmail.com" class="social-link email" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <form id="contact-form" class="contact-form" action="https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required placeholder=" ">
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="Images/My Portfolio-modified (1).png" alt="Logo" class="footer-logo">
+                    <p>Transforming Ideas into Impact</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-portfolios">
+                    <h4>Portfolios</h4>
+                    <ul>
+                        <li><a href="https://srujan29112001.github.io/AIPortfolio/" target="_blank">AI Portfolio</a></li>
+                        <li><a href="https://srujan29112001.github.io/RoboticsPortfolio/" target="_blank">Robotics Portfolio</a></li>
+                        <li><a href="https://srujan29112001.github.io/SpaceBioTechPortfolio/" target="_blank">Research Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Srujan. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
