@@ -755,17 +755,22 @@ if (scrollBackBtn) {
         submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
         
         try {
-            // Simulate form submission (replace with actual endpoint)
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
+            // Send form data to Google Apps Script Web App
+            await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'  // fire-and-forget; we don't need to read the response
+            });
+
             // Show success message
             formMessage.className = 'form-message success';
             formMessage.textContent = 'Thank you! Your message has been sent successfully.';
             formMessage.style.display = 'block';
-            
+
             // Reset form
             contactForm.reset();
         } catch (error) {
+
             // Show error message
             formMessage.className = 'form-message error';
             formMessage.textContent = 'Oops! Something went wrong. Please try again.';
