@@ -23,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadMoreBtn = document.getElementById('load-more-btn');
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
+    // ============ Analytics Helper (GA4) ============
+    function trackEvent(name, params = {}) {
+        if (typeof gtag === 'function') {
+            gtag('event', name, params);
+        }
+        // If GA isn't loaded (e.g., local file://), this safely does nothing
+    }
 
     // Motion preference
     let motionEnabled = localStorage.getItem('motionEnabled') !== 'false';
@@ -473,57 +480,57 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============ Projects Data ============
     const projects = [
         {
-            title: 'AI-Powered Object Detection System',
-            description: 'Real-time aerial object detection using YOLOv7 on NVIDIA Jetson AGX Xavier for DRDO-DRDL.',
-            tech: ['Python', 'YOLOv7', 'CUDA', 'TensorRT', 'OpenCV'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
-            icon: 'fa-brain',
+            title: 'Entrepreneurship Intelligence Platform (EIP)',
+            description: 'An enterprise-grade AI platform featuring 35 specialized agents (Policy, Market, Finance, Tax, Legal, Investment, Real Estate, HR, ESG, and more) with GraphRAG knowledge systems, multi-agent collaboration, and comprehensive business intelligence for entrepreneurs at all stages.',
+            tech: ['AI/ML', 'LLM', 'Multi-Agent System', 'FastAPI', 'Streamlit', 'LangChain', 'DSPy', 'GraphRAG', 'Vector Database', 'Knowledge Graph', 'A2A Communication', 'Kubernetes', 'Docker', 'Microservices', 'PostgreSQL', 'MongoDB', 'Neo4j', 'Redis', 'Pinecone', 'Kafka', 'Spark', 'Airflow', 'Prometheus', 'Grafana', 'Entrepreneurship', 'Business Intelligence', 'Market Analysis', 'Financial Planning', 'Tax Optimization', 'Investment Analysis', 'Real Estate', 'Marketing Strategy', 'Competitive Intelligence', 'Policy Monitoring', 'ESG', 'Macroeconomics', 'International Markets', 'Hedge Funds', 'Mutual Funds', 'HFT', 'HR Analytics', 'Philanthropy', 'NGO Management' ],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/EIP',
+            icon: 'fas fa-briefcase',
             category: 'ai'
         },
         {
-            title: 'Autonomous Drone Navigation',
-            description: 'Developed autonomous navigation system for Tunga aerial vehicle using Pixhawk and Jetson Nano.',
-            tech: ['ROS', 'Python', 'C++', 'PX4', 'SLAM'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
-            icon: 'fa-helicopter',
-            category: 'robotics'
+            title: 'Clinical AI Copilot with Multimodal EEG + Clinical RAG',
+            description: 'Enterprise-grade healthcare AI system combining real-time EEG signal analysis with clinical knowledge retrieval for neurological disorder detection. Provides accurate diagnosis and treatment recommendations through multimodal deep learning models (CNN-LSTM, Transformer, SNN) integrated with GraphRAG-powered medical knowledge bases, all while maintaining HIPAA compliance',
+            tech: ['Deep Learning', 'EEG Signal Processing', 'GraphRAG', 'PyTorch', 'Multimodal AI', 'Retrieval-Augmented Generation (RAG)', 'CNN-LSTM', 'Transformer', 'Spiking Neural Networks (SNN)', 'BioBERT', 'Llama 3.1', 'HIPAA Compliant', 'FastAPI', 'Neo4j', 'Qdrant Vector Database', 'Kafka Streaming','Docker/Kubernetes', 'GPU Computing (CUDA)', 'PostgreSQL', 'Redis', 'Prometheus/Grafana', 'Clinical Decision Support', 'Neurological Disorder Detection', 'Seizure Detection', 'Sleep Stage Classification', 'Medical AI', 'Healthcare Analytics', 'Real-time Monitoring', 'Telemedicine', 'EEG Analysis'],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/Clinical-AI-copilot',
+            icon: 'fas fa-stethoscope',
+            category: 'research'
         },
         {
-            title: 'Neural Style Transfer Engine',
-            description: 'Deep learning model for real-time artistic style transfer on images and videos.',
-            tech: ['PyTorch', 'Python', 'CUDA', 'Flask', 'React'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
-            icon: 'fa-palette',
+            title: 'Space Debris Tracking & Autonomous Collision Prediction System',
+            description: 'An enterprise-grade AI-powered system for autonomous space debris detection, tracking, and collision prediction using computer vision (YOLOv7, DINO v2), physics-informed neural networks, and knowledge graphs. Features real-time monitoring with multi-agent systems, production APIs (FastAPI/GraphQL/WebSocket), and interactive 3D visualization dashboards deployed on containerized infrastructure.',
+            tech: ['artificial-intelligence', 'machine-learning', 'deep-learning', 'computer-vision', 'pytorch', 'transformers', 'physics-informed-neural-networks', 'space-debris-tracking', 'orbital-mechanics', 'satellite-collision-prediction', 'space-situational-awareness', 'autonomous-monitoring', 'trajectory-prediction', 'fastapi', 'neo4j', 'graphql', 'websockets', 'docker', 'kubernetes', 'kafka', 'streamlit', 'redis', 'postgresql', 'yolov7', 'object-tracking', 'deepsort', 'knowledge-graph', 'multi-agent-systems', 'reinforcement-learning', '3d-gaussian-splatting', 'mamba-state-space-models', 'microservices', 'rest-api', 'real-time-processing', 'prometheus-monitoring', 'cloud-native'],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/Space-debrey',
+            icon: 'fa-satellite',
+            category: 'research'
+        },
+        {
+            title: 'Finance Analytics & Trading Co-Pilot',
+            description: 'Real-time finance analytics platform combining Apache Kafka/Spark streaming with AI-powered trading insights using LangChain RAG, reinforcement learning agents (DQN), and multi-modal data fusion across market prices, news sentiment, and social media signals.',
+            tech: ['apache-kafka', 'apache-spark', 'langchain', 'fastapi', 'streamlit', 'docker-compose', 'postgresql', 'mongodb', 'neo4j', 'qdrant-vector-database', 'mlflow', 'prometheus', 'grafana', 'RAG', 'graph-rag', 'reinforcement-learning', 'deep-q-network', 'sentiment-analysis', 'llm', 'gpt-4', 'machine-learning', 'real-time-analytics', 'trading-bot', 'financial-analytics', 'streaming-data', 'microservices', 'ai-copilot', 'market-data', 'mlops', 'observability', 'knowledge-graph', 'fintech', 'algorithmic-trading', 'market-intelligence', ],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/Finance-and-Trading',
+            icon: 'fab fa-trade-federation',
             category: 'ai'
         },
         {
-            title: 'Robotic Arm Control System',
-            description: 'Precision control system for 6-DOF robotic arm with computer vision integration.',
-            tech: ['ROS2', 'MoveIt', 'Python', 'Arduino', 'OpenCV'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
+            title: 'Vision-Language Robotic Assistant (VLA-Sim)',
+            description: 'An embodied AI system integrating vision-language models with ROS2 robotics for autonomous home service tasks, combining multimodal perception, LLM-based planning, and reinforcement learning policies.Features containerized microservices architecture with Gazebo/Isaac simulation, GraphRAG memory, and real-time monitoring for end-to-end robotic task execution.',
+            tech: ['ROS2', 'Vision-Language-Action (VLA)', 'Docker', 'Kubernetes', 'FastAPI', 'GraphQL', 'LLM (Large Language Models)', 'Reinforcement-Learning', 'GraphRAG', 'Vision-Transformers', 'Deep-Learning', 'QLoRA', 'Embodied-AI', 'Autonomous-Navigation', 'SLAM', 'MoveIt2', 'Manipulation', 'Service-Robotics', 'Gazebo', 'NVIDIA-Isaac-Sim', 'Prometheus', 'Grafana', 'MLflow', 'Multimodal-AI', 'Cognitive-Robotics', 'MCP-Protocol', 'Spiking-Neural-Networks'],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/Robot-Assistant-VLA-Sim',
             icon: 'fa-robot',
             category: 'robotics'
         },
         {
-            title: 'Biotech Data Analysis Pipeline',
-            description: 'Machine learning pipeline for genomic data analysis and protein structure prediction.',
-            tech: ['Python', 'BioPython', 'TensorFlow', 'R', 'SQL'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
-            icon: 'fa-dna',
-            category: 'research'
-        },
-        {
-            title: 'Space Debris Tracking System',
-            description: 'AI-based system for tracking and predicting space debris trajectories.',
-            tech: ['Python', 'TensorFlow', 'Astropy', 'OpenCV', 'NumPy'],
-            video: 'https://drive.google.com/file/d/YOUR_VIDEO_ID/view',
-            document: 'https://drive.google.com/file/d/YOUR_DOC_ID/view',
-            icon: 'fa-satellite',
+            title: 'Personalized Wellness AI for Holistic Health',
+            description: 'An AI-powered holistic wellness platform that analyzes EEG brain signals, provides conversational AI coaching, and delivers personalized health recommendations by integrating traditional Ayurvedic wisdom with modern nutritional science.The platform combines multi-modal health data processing (brainwaves, voice emotion, food recognition) with advanced ML models and knowledge graphs to offer personalized diet, supplement, and lifestyle interventions for stress management, focus optimization, and overall wellbeing.',
+            tech: ['wellness-ai', 'holistic-health', 'personalized-healthcare', 'ayurveda', 'preventive-health', 'machine-learning', 'deep-learning', 'langchain', 'natural-language-processing', 'computer-vision', 'eeg-analysis', 'fastapi', 'pytorch', 'graphql', 'streamlit', 'neo4j', 'postgresql', 'mongodb', 'vector-database', 'graphrag', 'eeg', 'brainwave-analysis', 'biosignal-processing', 'voice-emotion-detection', 'multimodal-ai', 'microservices', 'docker', 'kubernetes', 'rest-api', 'mlops', ],
+            video: '#',
+            document: 'https://github.com/Srujan29112001/Wellnessapp',
+            icon: 'fas fa-spa',
             category: 'research'
         }
     ];
@@ -558,13 +565,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                     </div>
                     <div class="project-links">
-                        <a href="${project.video}" target="_blank" aria-label="Watch Video">
+                        <a href="${project.video}"
+                           target="_blank"
+                           aria-label="Watch Video"
+                           data-track-click="project_demo_click"
+                           data-track-label="Demo - ${project.title}">
                             <i class="fas fa-play-circle"></i>
-                            <span>Demo</span>
+                            <span>Demo(Coming Soon)</span>
                         </a>
-                        <a href="${project.document}" target="_blank" aria-label="View Document">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Docs</span>
+                        <a href="${project.document}"
+                           target="_blank"
+                           aria-label="View Document"
+                           data-track-click="project_docs_click"
+                           data-track-label="Docs - ${project.title}">
+                            <i class="fab fa-github"></i>
+                            <span>My Repo</span>
                         </a>
                     </div>
                 </div>
@@ -593,42 +608,42 @@ document.addEventListener('DOMContentLoaded', function() {
             excerpt: 'Exploring the philosophical implications of artificial general intelligence and its relationship with human consciousness.',
             category: 'AI',
             date: 'Jan 15, 2025',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         },
         {
             title: 'Building Autonomous Systems: A Practical Guide',
             excerpt: 'Step-by-step approach to developing autonomous robotic systems using ROS2 and modern control theory.',
             category: 'Robotics',
             date: 'Jan 10, 2025',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         },
         {
             title: 'Space Technology and the Future of Humanity',
             excerpt: 'How advances in space technology are shaping our understanding of life beyond Earth.',
             category: 'Research',
             date: 'Jan 5, 2025',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         },
         {
             title: 'Deep Learning in Edge Computing',
             excerpt: 'Optimizing neural networks for deployment on edge devices like NVIDIA Jetson and Raspberry Pi.',
             category: 'AI',
             date: 'Dec 28, 2024',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         },
         {
             title: 'The Art of System Integration',
             excerpt: 'Lessons learned from integrating complex AI systems in defense applications.',
             category: 'Engineering',
             date: 'Dec 20, 2024',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         },
         {
             title: 'Biotechnology Meets Machine Learning',
             excerpt: 'Revolutionary applications of ML in genomics and drug discovery.',
             category: 'Research',
             date: 'Dec 15, 2024',
-            link: '#'
+            link: 'https://ko-fi.com/srujan'
         }
     ];
     
@@ -702,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load more blog posts → redirect to full blog page
     loadMoreBtn?.addEventListener('click', () => {
         // Change this URL to wherever you want the button to go
-        window.location.href = 'https://your-blog-url-here.com';
+        window.location.href = 'https://ko-fi.com/srujan';
     });
     
     // ============ Scroll Back to Top of Blog Section ============
@@ -755,22 +770,17 @@ if (scrollBackBtn) {
         submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
         
         try {
-            // Send form data to Google Apps Script Web App
-            await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'  // fire-and-forget; we don't need to read the response
-            });
-
+            // Simulate form submission (replace with actual endpoint)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
             // Show success message
             formMessage.className = 'form-message success';
             formMessage.textContent = 'Thank you! Your message has been sent successfully.';
             formMessage.style.display = 'block';
-
+            
             // Reset form
             contactForm.reset();
         } catch (error) {
-
             // Show error message
             formMessage.className = 'form-message error';
             formMessage.textContent = 'Oops! Something went wrong. Please try again.';
@@ -1213,6 +1223,51 @@ if (scrollBackBtn) {
         });
     }
     
+    // ============ Section View Tracking (GA4) ============
+    const trackedSections = new Set();
+    const sectionElements = document.querySelectorAll('[data-track-section]');
+
+    if (sectionElements.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const sectionId = el.id || el.dataset.trackSection;
+                    const sectionName = el.dataset.trackSection || sectionId;
+
+                    if (!trackedSections.has(sectionId)) {
+                        trackedSections.add(sectionId);
+
+                        // Fire a GA4 event once per section per page load
+                        trackEvent('section_view', {
+                            section_id: sectionId,
+                            section_name: sectionName
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sectionElements.forEach(el => sectionObserver.observe(el));
+    }
+    // ============ Button / Link Click Tracking (GA4) ============
+    const trackableElements = document.querySelectorAll('[data-track-click]');
+
+    if (trackableElements.length > 0) {
+        trackableElements.forEach(el => {
+            el.addEventListener('click', () => {
+                const eventName = el.dataset.trackClick || 'button_click';
+                const label = el.dataset.trackLabel || el.innerText.trim();
+                const section = el.closest('section')?.id || null;
+
+                trackEvent(eventName, {
+                    button_label: label,
+                    button_id: el.id || null,
+                    section: section
+                });
+            });
+        });
+    }
     // Initialize 3D effects after a delay
     setTimeout(init3DEffects, 2000);
 
