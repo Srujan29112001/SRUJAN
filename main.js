@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function() {
                            data-track-click="project_docs_click"
                            data-track-label="Docs - ${project.title}">
                             <i class="fab fa-github"></i>
-                            <span>My Repo</span>
+                            <span>Repo</span>
                         </a>
                     </div>
                 </div>
