@@ -608,42 +608,42 @@ document.addEventListener('DOMContentLoaded', function() {
             excerpt: 'Exploring the philosophical implications of artificial general intelligence and its relationship with human consciousness.',
             category: 'AI',
             date: 'Jan 15, 2025',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         },
         {
             title: 'Building Autonomous Systems: A Practical Guide',
             excerpt: 'Step-by-step approach to developing autonomous robotic systems using ROS2 and modern control theory.',
             category: 'Robotics',
             date: 'Jan 10, 2025',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         },
         {
             title: 'Space Technology and the Future of Humanity',
             excerpt: 'How advances in space technology are shaping our understanding of life beyond Earth.',
             category: 'Research',
             date: 'Jan 5, 2025',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         },
         {
             title: 'Deep Learning in Edge Computing',
             excerpt: 'Optimizing neural networks for deployment on edge devices like NVIDIA Jetson and Raspberry Pi.',
             category: 'AI',
             date: 'Dec 28, 2024',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         },
         {
             title: 'The Art of System Integration',
             excerpt: 'Lessons learned from integrating complex AI systems in defense applications.',
             category: 'Engineering',
             date: 'Dec 20, 2024',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         },
         {
             title: 'Biotechnology Meets Machine Learning',
             excerpt: 'Revolutionary applications of ML in genomics and drug discovery.',
             category: 'Research',
             date: 'Dec 15, 2024',
-            link: 'https://ko-fi.com/srujan'
+            link: 'https://medium.com/@srujan.hardik'
         }
     ];
     
@@ -717,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load more blog posts → redirect to full blog page
     loadMoreBtn?.addEventListener('click', () => {
         // Change this URL to wherever you want the button to go
-        window.location.href = 'https://ko-fi.com/srujan';
+        window.location.href = 'https://medium.com/@srujan.hardik';
     });
     
     // ============ Scroll Back to Top of Blog Section ============
