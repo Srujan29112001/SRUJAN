@@ -94,54 +94,45 @@ document.addEventListener('DOMContentLoaded', function() {
             initParticles();
         }
 
-        // Particle class
+        // Particle class - Subtle pulsing dots like reference image
+        let globalTime = 0; // For synchronized pulsing
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.z = Math.random() * 2;
-                this.size = Math.random() * 0.8 + 0.3; // Smaller particles (0.3-1.1 instead of 1-3)
-                this.speedX = (Math.random() * 2 - 1) * 0.5;
-                this.speedY = (Math.random() * 2 - 1) * 0.5;
-                this.speedZ = (Math.random() * 0.02 - 0.01);
-                // DodgerBlue (#1E90FF), Yellow (#FFFF00), Red-Orange (#FF3B30)
-                // More transparent particles (0.08-0.23 instead of 0.3-0.8)
-                this.color = `rgba(${['30, 144, 255', '255, 255, 0', '255, 59, 48'][Math.floor(Math.random() * 3)]}, ${(Math.random() * 0.15 + 0.08).toFixed(2)})`;
-
+                // Tiny base size (0.5-1.5 pixels) - like subtle dust particles
+                this.baseSize = Math.random() * 1 + 0.5;
+                // Very slow drift movement
+                this.speedX = (Math.random() - 0.5) * 0.15;
+                this.speedY = (Math.random() - 0.5) * 0.15;
+                // Pulsing parameters - each particle pulses at slightly different rate
+                this.pulseSpeed = Math.random() * 0.02 + 0.01; // How fast it pulses
+                this.pulseOffset = Math.random() * Math.PI * 2; // Starting phase offset
+                this.pulseAmount = Math.random() * 0.5 + 0.3; // How much size varies (30-80%)
+                // Very subtle base opacity (0.08-0.2)
+                this.baseOpacity = Math.random() * 0.12 + 0.08;
+                // Keep original colors: DodgerBlue, Yellow, Red-Orange
+                this.colorRGB = ['30, 144, 255', '255, 255, 0', '255, 59, 48'][Math.floor(Math.random() * 3)];
             }
 
             update() {
-                this.x += this.speedX * (this.z + 1);
-                this.y += this.speedY * (this.z + 1);
-                this.z += this.speedZ;
+                // Gentle floating movement
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-                if (this.z > 2) this.z = 2;
-                if (this.z < 0) this.z = 0;
-
+                // Wrap around edges
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
                 if (this.y < 0) this.y = canvas.height;
 
-                const dx = mouseX - this.x;
-                const dy = mouseY - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const maxDistance = 150 * (this.z + 1);
+                // Very subtle random drift
+                this.speedX += (Math.random() - 0.5) * 0.01;
+                this.speedY += (Math.random() - 0.5) * 0.01;
 
-                if (distance < maxDistance) {
-                    const force = (maxDistance - distance) / maxDistance;
-                    const forceX = (dx / distance) * force * 2;
-                    const forceY = (dy / distance) * force * 2;
-                    this.speedX -= forceX * 0.5;
-                    this.speedY -= forceY * 0.5;
-                }
-
-                this.speedX *= 0.99;
-                this.speedY *= 0.99;
-                this.speedX += (Math.random() - 0.5) * 0.05;
-                this.speedY += (Math.random() - 0.5) * 0.05;
-
-                const maxSpeed = 1.5;
+                // Limit speed to keep movement gentle
+                const maxSpeed = 0.3;
                 const speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
                 if (speed > maxSpeed) {
                     this.speedX = (this.speedX / speed) * maxSpeed;
@@ -150,9 +141,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             draw() {
-                const opacity = (this.z + 1) / 6; // Reduced opacity (was /3, now /6 for more transparency)
-                const size = this.size * (this.z + 1);
-                ctx.fillStyle = this.color.replace(/[\d.]+\)/, `${opacity})`);
+                // Pulsing effect using sine wave - size breathes in and out
+                const pulse = Math.sin(globalTime * this.pulseSpeed + this.pulseOffset);
+                const pulseFactor = 1 + pulse * this.pulseAmount;
+                const size = this.baseSize * pulseFactor;
+
+                // Opacity also pulses slightly for more organic feel
+                const opacityPulse = 1 + pulse * 0.3;
+                const opacity = Math.min(this.baseOpacity * opacityPulse, 0.35);
+
+                ctx.fillStyle = `rgba(${this.colorRGB}, ${opacity.toFixed(3)})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
                 ctx.fill();
@@ -161,39 +159,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function initParticles() {
             particles = [];
-            const particleCount = Math.min(150, (canvas.width * canvas.height) / 8000);
+            // More particles since they're tiny - creates subtle starfield/dust effect
+            const particleCount = Math.min(200, (canvas.width * canvas.height) / 5000);
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
         }
 
-        function drawConnections() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 120) {
-                        const opacity = (1 - distance / 120) * 0.12; // Reduced opacity (was 0.3, now 0.12)
-                        ctx.strokeStyle = `rgba(255, 107, 53, ${opacity})`;
-                        ctx.lineWidth = 0.3 * ((particles[i].z + particles[j].z) / 2 + 1); // Thinner lines (was 0.5)
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
+        // Connection lines removed for cleaner, subtle look like reference image
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Increment global time for pulsing animation
+            globalTime += 1;
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-            drawConnections();
+            // No connection lines - just floating pulsing dots
             animationId = requestAnimationFrame(animate);
         }
 
