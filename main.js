@@ -100,12 +100,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.z = Math.random() * 2;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 0.8 + 0.3; // Smaller particles (0.3-1.1 instead of 1-3)
                 this.speedX = (Math.random() * 2 - 1) * 0.5;
                 this.speedY = (Math.random() * 2 - 1) * 0.5;
                 this.speedZ = (Math.random() * 0.02 - 0.01);
                 // DodgerBlue (#1E90FF), Yellow (#FFFF00), Red-Orange (#FF3B30)
-                this.color = `rgba(${['30, 144, 255', '255, 255, 0', '255, 59, 48'][Math.floor(Math.random() * 3)]}, ${(Math.random() * 0.5 + 0.3).toFixed(2)})`;
+                // More transparent particles (0.08-0.23 instead of 0.3-0.8)
+                this.color = `rgba(${['30, 144, 255', '255, 255, 0', '255, 59, 48'][Math.floor(Math.random() * 3)]}, ${(Math.random() * 0.15 + 0.08).toFixed(2)})`;
 
             }
 
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             draw() {
-                const opacity = (this.z + 1) / 3;
+                const opacity = (this.z + 1) / 6; // Reduced opacity (was /3, now /6 for more transparency)
                 const size = this.size * (this.z + 1);
                 ctx.fillStyle = this.color.replace(/[\d.]+\)/, `${opacity})`);
                 ctx.beginPath();
@@ -174,9 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 120) {
-                        const opacity = (1 - distance / 120) * 0.3;
+                        const opacity = (1 - distance / 120) * 0.12; // Reduced opacity (was 0.3, now 0.12)
                         ctx.strokeStyle = `rgba(255, 107, 53, ${opacity})`;
-                        ctx.lineWidth = 0.5 * ((particles[i].z + particles[j].z) / 2 + 1);
+                        ctx.lineWidth = 0.3 * ((particles[i].z + particles[j].z) / 2 + 1); // Thinner lines (was 0.5)
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
