@@ -101,17 +101,18 @@ document.addEventListener('DOMContentLoaded', function() {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                // Tiny base size (0.5-1.5 pixels) - like subtle dust particles
-                this.baseSize = Math.random() * 1 + 0.5;
+                // Small base size for the "died down" state
+                this.minSize = Math.random() * 0.5 + 0.3; // 0.3-0.8 px when small
+                this.maxSize = Math.random() * 2 + 1.5;   // 1.5-3.5 px when bloomed
                 // Very slow drift movement
                 this.speedX = (Math.random() - 0.5) * 0.15;
                 this.speedY = (Math.random() - 0.5) * 0.15;
-                // Pulsing parameters - each particle pulses at slightly different rate
-                this.pulseSpeed = Math.random() * 0.02 + 0.01; // How fast it pulses
-                this.pulseOffset = Math.random() * Math.PI * 2; // Starting phase offset
-                this.pulseAmount = Math.random() * 0.5 + 0.3; // How much size varies (30-80%)
-                // Very subtle base opacity (0.08-0.2)
-                this.baseOpacity = Math.random() * 0.12 + 0.08;
+                // Pulsing parameters - visible blooming effect
+                this.pulseSpeed = Math.random() * 0.04 + 0.02; // Faster pulsing (0.02-0.06)
+                this.pulseOffset = Math.random() * Math.PI * 2; // Random starting phase
+                // Opacity range for blooming effect
+                this.minOpacity = 0.05;  // Very faint when small
+                this.maxOpacity = Math.random() * 0.15 + 0.12; // 0.12-0.27 when bloomed
                 // Keep original colors: DodgerBlue, Yellow, Red-Orange
                 this.colorRGB = ['30, 144, 255', '255, 255, 0', '255, 59, 48'][Math.floor(Math.random() * 3)];
             }
@@ -141,14 +142,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             draw() {
-                // Pulsing effect using sine wave - size breathes in and out
-                const pulse = Math.sin(globalTime * this.pulseSpeed + this.pulseOffset);
-                const pulseFactor = 1 + pulse * this.pulseAmount;
-                const size = this.baseSize * pulseFactor;
+                // Blooming effect: particle grows from minSize to maxSize and back
+                // Using (sin + 1) / 2 to get value between 0 and 1
+                const pulse = (Math.sin(globalTime * this.pulseSpeed + this.pulseOffset) + 1) / 2;
 
-                // Opacity also pulses slightly for more organic feel
-                const opacityPulse = 1 + pulse * 0.3;
-                const opacity = Math.min(this.baseOpacity * opacityPulse, 0.35);
+                // Size blooms from min to max
+                const size = this.minSize + (this.maxSize - this.minSize) * pulse;
+
+                // Opacity also blooms - brighter when bigger
+                const opacity = this.minOpacity + (this.maxOpacity - this.minOpacity) * pulse;
 
                 ctx.fillStyle = `rgba(${this.colorRGB}, ${opacity.toFixed(3)})`;
                 ctx.beginPath();
